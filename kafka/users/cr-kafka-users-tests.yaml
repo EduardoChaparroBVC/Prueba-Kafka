@@ -1,0 +1,78 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: test-int-msg-read-0
+  namespace: strimzi-kafka
+  labels:
+    strimzi.io/cluster: nuam-cluster
+spec:
+  authentication:
+    type: tls
+  authorization:
+    type: simple
+    acls:
+      # Example consumer Acls for topic my-topic using consumer group my-group
+      - resource:
+          type: topic
+          name: test-topic-one-partition
+          patternType: literal
+        operations:
+          - Describe
+          - Read
+        host: "*"
+      - resource:
+          type: group
+          name: test-group-group
+          patternType: literal
+        operations:
+          - Read
+        host: "*"
+      # Example Producer Acls for topic my-topic
+      - resource:
+          type: topic
+          name: test-topic-one-partition
+          patternType: literal
+        operations:
+          - Create
+          - Describe
+        host: "*"
+
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: test-int-msg-wrt-0
+  namespace: strimzi-kafka
+  labels:
+    strimzi.io/cluster: nuam-cluster
+spec:
+  authentication:
+    type: tls
+  authorization:
+    type: simple
+    acls:
+      # Example consumer Acls for topic my-topic using consumer group my-group
+      - resource:
+          type: topic
+          name: test-topic-one-partition
+          patternType: literal
+        operations:
+          - Create
+          - Write
+        host: "*"
+      - resource:
+          type: group
+          name: test-group
+          patternType: literal
+        operations:
+          - Write
+        host: "*"
+      # Example Producer Acls for topic my-topic
+      - resource:
+          type: topic
+          name: test-topic-one-partition
+          patternType: literal
+        operations:
+          - Create
+          - Describe
+        host: "*"

@@ -1,0 +1,34 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: user-bridge
+  namespace: strimzi-kafka
+  labels:
+    strimzi.io/cluster: nuam-cluster
+spec:
+  authentication:
+    type: tls
+  authorization:
+    type: simple
+    acls:
+    # Topics and groups used by the HTTP clients through the HTTP Bridge
+    # Change to match the topics used by your HTTP clients
+    - resource:
+        type: group
+        name: bridge-group
+      operations:
+        - Read
+        - Write
+        - Describe
+        - Create
+        # "Read", "Write", "Create", "Delete", "Alter", "Describe", "ClusterAction", "AlterConfigs", "DescribeConfigs", "IdempotentWrite", "All"
+    - resource:
+        type: topic
+        name: test-
+        patternType: prefix
+      operations:
+        - Read
+        - Write
+        - Describe
+        - Create
+        # "Read", "Write", "Create", "Delete", "Alter", "Describe", "ClusterAction", "AlterConfigs", "DescribeConfigs", "IdempotentWrite", "All"

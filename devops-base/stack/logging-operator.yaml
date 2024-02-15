@@ -1,0 +1,31 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: nuam-bus-kus-devops-logging-operator
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./infrastructure/base-stack/logging-operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: git-base-source-devops
+  timeout: 3m0s
+  wait: true
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: nuam-bus-kus-devops-logging-operator-cr
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./infrastructure/base-stack-cr/logging-operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: git-base-source-devops
+  timeout: 3m0s
+  wait: true

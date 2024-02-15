@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+#- git-base-credentials.yaml
+- git-base-source.yaml
+# - tmp-fix-logging.yaml
+- ./stack/sealed-secrets.yaml 
+- ./stack/reposources.yaml 
+- ./stack/monitoring-prometheus.yaml 
+- ./stack/logging-operator.yaml 
+
+# Order is important
+#- ./stack/cert-manager.yaml 
+#- ./stack/external-dns.yaml 
+#- ./stack/ingress-nginx.yaml
+#- ./stack/keycloak-operator.yaml

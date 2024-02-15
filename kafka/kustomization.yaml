@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ./install/namespace.yaml
+- ./install/strimzi-operator.yaml
+- ./cluster/cr-kafka-strimzi.yaml
+- ./topics/cr-topics.yaml
+- ./users/cr-kafka-user-bridge-1.yaml
+- ./users/cr-kafka-user-gui.yaml
+- ./users/cr-kafka-users-tests.yaml
+- ./bridge/cr-kafka-bridge.yaml
+- ./install/kafka-ui-repo.yaml
+- ./install/kafka-ui-release.yaml
