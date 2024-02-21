@@ -23,12 +23,14 @@ spec:
   interval: 24h0m0s
   
   values:
+    service:
+        type: NodePort
+        port: 9090
     yamlApplicationConfig:
       kafka:
         clusters:
           - name: nuam-cluster
             bootstrapServers: nuam-cluster-kafka-bootstrap.strimzi-kafka:9092
-            server.port: 9090
             properties:
               security.protocol: SASL_PLAINTEXT
               sasl.mechanism: SCRAM-SHA-512 
