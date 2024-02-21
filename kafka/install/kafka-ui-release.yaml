@@ -21,12 +21,10 @@ spec:
   upgrade:
     crds: CreateReplace
   interval: 24h0m0s
-  
   values:
-    service:
-        type: NodePort
-        port: 9090
     yamlApplicationConfig:
+      server:
+        port: 10000
       kafka:
         clusters:
           - name: nuam-cluster
