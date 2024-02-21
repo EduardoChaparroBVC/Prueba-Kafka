@@ -21,9 +21,8 @@ spec:
   upgrade:
     crds: CreateReplace
   interval: 24h0m0s
-  containers:
-    - ports:
-        - containerPort: 9090
+  server:
+    port: 10000
   values:
     yamlApplicationConfig:
       kafka:
