@@ -4,7 +4,6 @@ metadata:
   name: kafka-ui
   namespace: strimzi-kafka
 spec:
-spec:
   containers:
   - env:
     - name: SPRING_CONFIG_ADDITIONAL-LOCATION
