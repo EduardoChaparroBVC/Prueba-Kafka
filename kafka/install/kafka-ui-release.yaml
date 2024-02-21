@@ -4,11 +4,6 @@ metadata:
   name: kafka-ui
   namespace: strimzi-kafka
 spec:
-  containers:
-  - ports:
-    - containerPort: 9090
-      name: http
-      protocol: TCP
   releaseName: kafka-ui
   chart:
     spec:
@@ -36,7 +31,7 @@ spec:
             properties:
               security.protocol: SASL_PLAINTEXT
               sasl.mechanism: SCRAM-SHA-512 
-              sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="gui--user" password="c46bHH4Tcoq8sXj3iYcNDnrejagmhTtF";
+              sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="gui-user" password="c46bHH4Tcoq8sXj3iYcNDnrejagmhTtF";
             server:
                 port: 10000
       auth:
