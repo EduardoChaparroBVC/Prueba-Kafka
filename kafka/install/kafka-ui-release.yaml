@@ -28,6 +28,7 @@ spec:
         clusters:
           - name: nuam-cluster
             bootstrapServers: nuam-cluster-kafka-bootstrap.strimzi-kafka:9092
+            port: 9090
             properties:
               security.protocol: SASL_PLAINTEXT
               sasl.mechanism: SCRAM-SHA-512 
