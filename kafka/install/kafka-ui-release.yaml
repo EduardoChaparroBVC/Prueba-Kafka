@@ -21,6 +21,10 @@ spec:
   upgrade:
     crds: CreateReplace
   interval: 24h0m0s
+  containers:
+    - Image: docker.io/provectuslabs/kafka-ui:v0.7.1
+      ports:
+            - containerPort: 9090
   values:
     yamlApplicationConfig:
       kafka:
@@ -31,8 +35,6 @@ spec:
               security.protocol: SASL_PLAINTEXT
               sasl.mechanism: SCRAM-SHA-512 
               sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="gui-user" password="c46bHH4Tcoq8sXj3iYcNDnrejagmhTtF";
-            ports:
-            - containerPort: 9090
       auth:
         type: disabled
       management:
