@@ -30,7 +30,7 @@ spec:
             properties:
               security.protocol: SASL_PLAINTEXT
               sasl.mechanism: SCRAM-SHA-512 
-              sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="gui-user" password="$PASSUI";
+              sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="gui-user" password="c46bHH4Tcoq8sXj3iYcNDnrejagmhTtF";
       auth:
         type: disabled
       management:
