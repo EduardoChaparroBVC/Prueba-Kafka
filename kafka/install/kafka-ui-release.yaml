@@ -4,6 +4,26 @@ metadata:
   name: kafka-ui
   namespace: strimzi-kafka
 spec:
+spec:
+  containers:
+  - env:
+    - name: SPRING_CONFIG_ADDITIONAL-LOCATION
+      value: /kafka-ui/config.yml
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /actuator/health
+        port: http
+        scheme: HTTP
+      initialDelaySeconds: 60
+      periodSeconds: 30
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: kafka-ui
+    ports:
+    - containerPort: 9090
+      name: http
+      protocol: TCP
   releaseName: kafka-ui
   chart:
     spec:
