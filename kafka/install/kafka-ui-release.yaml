@@ -22,8 +22,7 @@ spec:
     crds: CreateReplace
   interval: 24h0m0s
   containers:
-    - Image: docker.io/provectuslabs/kafka-ui:v0.7.1
-      ports:
+    - ports:
         - containerPort: 9090
   values:
     yamlApplicationConfig:
