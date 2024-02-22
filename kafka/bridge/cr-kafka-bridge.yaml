@@ -18,9 +18,9 @@ spec:
       key: user.key
   http:
     port: 8088
- # logging:
- #   type: inline
- #   loggers:
-#      logger.bridge.level: DEBUG
-#      logger.send.name: "http.nuam.operation.send"
-#      logger.send.level: DEBUG
+  logging:
+    type: inline
+    loggers:
+      logger.bridge.level: DEBUG
+      logger.send.name: "http.nuam.operation.send"
+      logger.send.level: DEBUG

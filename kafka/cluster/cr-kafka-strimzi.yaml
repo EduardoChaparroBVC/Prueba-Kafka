@@ -68,15 +68,15 @@ spec:
         tls: true
         authentication:
            type: tls
-      - name: oauth
-        port: 9094
-        type: internal
-        tls: false
-        authentication:
-          type: oauth
-          validIssuerUri: http://localhost:9090/auth/realms/demo
-          jwksEndpointUri: http://localhost:9090/auth/realms/demo/protocol/openid-connect/certs
-          userNameClaim: user_admin
+#      - name: oauth
+#        port: 9094
+#        type: internal
+#        tls: false
+#        authentication:
+#          type: oauth
+#          validIssuerUri: http://localhost:9090/auth/realms/demo
+#          jwksEndpointUri: http://localhost:9090/auth/realms/demo/protocol/openid-connect/certs
+#          userNameClaim: user_admin
       - name: external
         port: 9095
         type: nodeport
