@@ -30,21 +30,22 @@ spec:
             properties:
               security.protocol: SASL_PLAINTEXT
               sasl.mechanism: SCRAM-SHA-512 
-              sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="gui-user" password="c46bHH4Tcoq8sXj3iYcNDnrejagmhTtF";
+              sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="gui-user" password="daRuWe0Gib05roBXLO6SpcZXkJMlk3fU";
       auth:
         type: OAUTH2
         oauth2:
           client:
              keycloak:
-                 clientId: KafkaUI
-                 clientSecret: qVipCL3Bbd3AihF7cqDaxWhFkG4lqVt5
+                 clientId: KafkaUI-dev
+                 clientSecret: Xk9ptYN8sNLcLBnJBwy3e8KOufpJNLyB
                  scope: openid
-                 issuer-uri: http://localhost:9090/realms/master
+                 issuer-uri: https://sso-devops.nuamexchange.com/realms/nuamx
                  user-name-attribute: preferred_username
                  client-name: keycloak
                  provider: keycloak
                  custom-params:
                      type: oauth
+                     # type: keycloak
                      roles-field: groups
       management:
         health:
@@ -53,64 +54,73 @@ spec:
       rbac:
         enabled: true
         roles:
-        - name: "admins"
-            clusters:
-            - clusters
-            subjects:
+        - name: "Admin"
+          clusters:
+            - nuam-cluster
+          subjects:
             - provider: oauth
-                type: role
-                value: "Admin"
-            permissions:
+              type: role
+              value: "Admin-KafkaUI"
+          permissions:
             - resource: applicationconfig
-                actions: ["view", "edit", "create", "delete"]
-            
+              actions: ["view", "edit", "create", "delete"]
+          
             - resource: clusterconfig
-                actions: ["view", "edit", "create", "delete"]
-        
+              actions: ["view", "edit", "create", "delete"]
+      
             - resource: topic
-                value: ".*"
-                actions: ["view", "edit", "create", "delete"]
-        
+              value: ".*"
+              actions: ["view", "edit", "create", "delete"]
+      
             - resource: consumer
-                value: ".*"
-                actions: ["view", "edit", "create", "delete"]
-        
+              value: ".*"
+              actions: ["view", "edit", "create", "delete"]
+      
             - resource: schema
-                value: ".*"
-                actions: ["view", "edit", "create", "delete"]
-        
+              value: ".*"
+              actions: ["view", "edit", "create", "delete"]
+      
             - resource: connect
-                value: ".*"
-                actions: ["view", "edit", "create", "delete"]
-        
+              value: ".*"
+              actions: ["view", "edit", "create", "delete"]
+      
             - resource: ksql
-                actions: ["view", "edit", "create", "delete"]
+              actions: ["view", "edit", "create", "delete"]
+            
+            - resource: acl
+              value: ".*"
+              actions: ["view", "edit", "create", "delete"]
+              
         - name: "readonly"
-            clusters:
-            - clusters
-            subjects:
+          clusters:
+            - nuam-cluster
+          subjects:
             - provider: oauth
-                type: role
-                value: "Viewer"
-        
-            permissions:
+              type: role
+              value: "kafka-viewer"
+      
+          permissions:
             - resource: clusterconfig
-                actions: [ "view" ]
-        
+              actions: [ "view" ]
+      
             - resource: topic
-                value: ".*"
-                actions: 
+              value: ".*"
+              actions: 
                 - VIEW
                 - MESSAGES_READ
-        
+      
             - resource: consumer
-                value: ".*"
-                actions: [ "view" ]
-        
+              value: ".*"
+              actions: [ "view" ]
+      
             - resource: schema
-                value: ".*"
-                actions: [ "view" ]
-        
+              value: ".*"
+              actions: [ "view" ]
+      
             - resource: connect
-                value: ".*"
-                actions: [ "view" ]
+              value: ".*"
+              actions: [ "view" ]
+              
+            - resource: acl
+              value: ".*"
+              actions: ["view",
